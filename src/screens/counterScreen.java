@@ -5,11 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Controllers.addCounterController;
-import Controllers.loadCounterController;
-import Controllers.resetCounterController;
-import Controllers.saveCounterController;
-
 import Entities.counter;
 
 import UI.addCounterButton;
@@ -18,12 +13,7 @@ import UI.resetCounterButton;
 import UI.saveCounterButton;
 
 public class counterScreen implements ActionListener {
-    private final JButton addButton;
-    private final JButton resetButton;
-    private final JButton saveButton;
     private final JButton quitButton;
-    private final JButton loadButton;
-    private final JLabel countNum;
 
     public counterScreen(){
         JFrame frame = new JFrame();
@@ -31,16 +21,12 @@ public class counterScreen implements ActionListener {
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
 
-        countNum = new JLabel("Counter: " + counter.getCount());
+        JLabel countNum = new JLabel("Counter: " + counter.getCount());
 
-        loadButton = loadCounterButton.loadButton();
-        loadButton.addActionListener(this);
-        addButton = addCounterButton.CountButton();
-        addButton.addActionListener(this);
-        resetButton = resetCounterButton.ResetButton();
-        resetButton.addActionListener(this);
-        saveButton = saveCounterButton.saveButton();
-        saveButton.addActionListener(this);
+        JButton loadButton = loadCounterButton.loadButton();
+        JButton addButton = addCounterButton.CountButton();
+        JButton resetButton = resetCounterButton.ResetButton();
+        JButton saveButton = saveCounterButton.saveButton();
         quitButton = new JButton("Quit");
         quitButton.addActionListener(this);
 
@@ -71,28 +57,11 @@ public class counterScreen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == addButton){
-            addCounterController.addCount();
-            countNum.setText("Counter: " + counter.getCount());
-        }
-        if(e.getSource() == resetButton){
-            resetCounterController.resetCount();
-            countNum.setText("Counter: " + counter.getCount());
-        }
-
-        if(e.getSource() == saveButton){
-            saveCounterController.saveCount();
-            System.out.println("File saved. Count: " + counter.getCount());
-        }
 
         if(e.getSource() == quitButton){
             System.exit(0);
         }
 
-        if(e.getSource() == loadButton){
-            loadCounterController.loadCount();
-            countNum.setText("Counter: " + counter.getCount());
-        }
 
     }
 

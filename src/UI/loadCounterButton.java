@@ -1,11 +1,16 @@
 package UI;
 
-import javax.swing.*;
+import ActionListeners.loadButtonListener;
 
-public class loadCounterButton extends button{
-    public static JButton loadButton = createButton("Load Count");
+import javax.swing.*;
+import java.awt.event.ActionListener;
+
+public class loadCounterButton extends button implements ActionListener {
+    public static JButton loadButton = createButton("Load Count", new loadButtonListener());
 
     public static JButton loadButton() {
         return loadButton;
     }
+
+
 }
